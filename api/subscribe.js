@@ -12,8 +12,7 @@ module.exports = async (req, res) => {
   if (body.website) return res.status(200).json({ ok: true });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'email' });
   const firstName = String(body.firstName || '').trim().slice(0, 60);
-  const key = process.env.BREVO_API_KEY, list = Number(process.env.BREVO_LIST_ID || 3), doi = Number(process.env.BREVO_DOI_TEMPLATE_ID || 5);
-  if (!key) return res.status(500).json({ error: 'config' });
+const key = process.env.BREVO_API_KEY, list = Number(process.env.BREVO_LIST_ID || 3), doi = 1;  if (!key) return res.status(500).json({ error: 'config' });
   if (body.step === 'name') {
     if (!firstName) return res.status(400).json({ error: 'name' });
     try {
