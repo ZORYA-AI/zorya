@@ -43,7 +43,8 @@ module.exports = async (req, res) => {
     if (r.ok || r.status === 204) return res.status(200).json({ ok: true });
     const t = await r.text();
     if (/already exist/i.test(t)) return res.status(200).json({ ok: true });
-    return res.status(502).json({ error: 'brevo' });
+    console.error('brevo', r.status, t);
+    return res.status(502).json({ error: 'brevo', status: r.status, detail: t.slice(0, 300) });
   } catch (e) {
     return res.status(502).json({ error: 'network' });
   }
