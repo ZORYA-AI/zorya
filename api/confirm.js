@@ -11,11 +11,12 @@ module.exports = async (req, res) => {
     const { e, x } = JSON.parse(Buffer.from(data, 'base64url').toString());
     if (!e || Date.now() > x) throw new Error('expired');
     const r = await fetch('https://api.brevo.com/v3/contacts', { method: 'POST', headers: { 'api-key': key, 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify({ email: e, listIds: [list], updateEnabled: true }) });
-    if (!(r.ok || r.status === 204)) throw new Error('brevo');
+    if (!(r.ok || r.status === 204)) { const bt = await r.text(); console.error('brevo', r.status, bt); throw new Error('brevo ' + r.status + ' ' + bt.slice(0, 120)); }
     res.setHeader('Location', site + '/confirmed');
     return res.status(302).end();
   } catch (err) {
-    res.setHeader('Location', site + '/');
+    console.error('confirm failed', err.message);
+    res.setHeader('Location', site + '/?confirm_error=' + encodeURIComponent(err.message));
     return res.status(302).end();
   }
 };
