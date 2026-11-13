@@ -2,7 +2,7 @@
 // Env vars (Vercel > Settings > Environment Variables):
 //   BREVO_API_KEY          required
 //   BREVO_LIST_ID          optional (default 3, the waitlist list)
-//   BREVO_CONFIRM_TEMPLATE_ID optional (default 5): Brevo template with a button linking to {{ params.CONFIRM_URL }}
+//   BREVO_CONFIRM_TEMPLATE_ID optional (default 1): Brevo template with a button linking to {{ params.CONFIRM_URL }}
 //   Brevo contact attributes needed for the welcome step: FIRSTNAME, LOCATION, ROLE (text)
 //   SITE_URL               optional, default https://www.zoryaai.com
 const crypto = require('crypto');
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     } catch (e) { return res.status(502).json({ error: 'network' }); }
   }
   const site = process.env.SITE_URL || 'https://www.zoryaai.com';
-  const tpl = Number(process.env.BREVO_CONFIRM_TEMPLATE_ID || 5);
+  const tpl = Number(process.env.BREVO_CONFIRM_TEMPLATE_ID || 1);
   const data = Buffer.from(JSON.stringify({ e: email, x: Date.now() + 7 * 24 * 3600 * 1000 })).toString('base64url');
   const sig = crypto.createHmac('sha256', key).update(data).digest('base64url');
   const confirmUrl = site + '/api/confirm?t=' + data + '.' + sig;
