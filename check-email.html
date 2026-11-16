@@ -25,7 +25,7 @@
 <meta name="twitter:title" content="Check your email | Zorya AI">
 <meta name="twitter:description" content="One final step: click the link we sent you to confirm your email.">
 <meta name="twitter:image" content="https://www.zoryaai.com/og.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Zorya AI","url":"https://www.zoryaai.com","logo":"https://www.zoryaai.com/og.png","description":"A community of women founders, CEOs, investors and leaders building with AI."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Zorya AI","url":"https://www.zoryaai.com","logo":"https://www.zoryaai.com/og.png","description":"A community of women founders, CEOs, investors and leaders building with AI.","sameAs":["https://www.linkedin.com/company/zorya-ai/","https://maps.app.goo.gl/zHaNQvtPXBZHiKdz6"]}</script>
 <script data-zr>window.__ZR="check-email";</script>
 <script src="./support.js"></script>
 </head>
@@ -90,8 +90,16 @@
     [data-mc-banner] { flex-direction: column; gap: 2px !important; padding: 10px 16px !important; }
     [data-mc-banner-text] { font-size: 11.5px !important; line-height: 1.4; }
   }
-
   @media (max-width: 680px) { [data-sticky-cta] { display: flex !important; } body:has([data-sticky-cta]) footer { padding-bottom: 96px !important; } }
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  details[open] [data-faq-plus] { transform: rotate(45deg); }
+  @media (max-width: 680px) {
+    [data-four] { grid-template-columns: 1fr !important; }
+    [data-thread] { grid-template-columns: 1fr !important; gap: 18px !important; }
+    [data-thread-line] { left: 6px !important; right: auto !important; top: 6px !important; bottom: 6px !important; width: 1px !important; height: auto !important; }
+    [data-thread-item] { flex-direction: row !important; align-items: flex-start !important; gap: 16px !important; }
+  }
 </style>
 <script async="" src="https://tally.so/widgets/embed.js"></script>
 </helmet>
@@ -109,12 +117,10 @@
 </main>
 </div>
 </sc-if>
-
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#FFD500&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#FFD500&quot;,&quot;#E8552E&quot;,&quot;#1B3AA0&quot;,&quot;#F6D2C3&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;promiseStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;blue-yellow&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;blue-yellow&quot;,&quot;orange-pink&quot;],&quot;section&quot;:&quot;Brand&quot;}}">
 class Component extends DCLogic {
   state = { route: (typeof window !== 'undefined' && window.__ZR) || 'home', wlSent: false, wlError: false, wlNameDone: false, majaOpen: false, saraOpen: false, faqOpen: 0, accFaqOpen: -1, weekOpen: -1, email: '', sent: false, cName: '', cEmail: '', cReason: 'The Inner Circle', cMessage: '', cSent: false, cardTilt: {}, pillarTilt: {}, valueTilt: {}, sisterTilt: {}, phaseOpen: 0 };
-
   handleSisterMove(i, e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
@@ -123,11 +129,9 @@ class Component extends DCLogic {
     const ry = (px - 0.5) * 10;
     this.setState(s => ({ sisterTilt: { ...s.sisterTilt, [i]: { rx, ry } } }));
   }
-
   resetSisterTilt(i) {
     this.setState(s => ({ sisterTilt: { ...s.sisterTilt, [i]: { rx: 0, ry: 0 } } }));
   }
-
   circleVals() {
     return {
       sisters: [
@@ -139,16 +143,15 @@ class Component extends DCLogic {
         return { ...s, onMove: (e) => this.handleSisterMove(i, e), onLeave: () => this.resetSisterTilt(i), tiltStyle: `transform: perspective(900px) rotateX(${t.rx}deg) rotateY(${t.ry}deg);` };
       }),
       circlePillars: [
-        { n: '01', title: 'Learn in small groups', included: 'Weekly live sessions · Peer support & learning · Buddy system & check-ins · Bi-weekly challenges · Build in public with feedback.', why: 'Where leaders connect, hold each other accountable, and learn together. Group size stays small so everyone speaks.' },
+        { n: '01', title: 'Learn in small groups', included: 'Weekly live sessions · Peer support & learning · Hands-on challenges, with your buddy to lean on · Build in public with feedback.', why: 'Where leaders connect, hold each other accountable, and learn together. Group size stays small so everyone speaks.' },
         { n: '02', title: 'Build and orchestrate agents', included: 'Learn agent architecture principles · One working agent example per week · Teach how to build, not just copy-paste · Agent orchestration fundamentals · Skills transfer to any problem.', why: 'Members leave with transferable skills to build anything, anytime, not dependent on templates. Focus on principles over templates.' },
-        { n: '03', title: 'Leadership Brain', included: 'Daily operational dashboard · Personal knowledge system · Team and business context capture · A curated external-source list tailored to your industry · Grows with your business.', why: 'This is the working system you use every day with both internal and external sources that will ensure you stay on top of your game.' },
+        { n: '03', title: 'Second Brain', included: 'Daily operational dashboard · Personal knowledge system · Team and business context capture · A curated external-source list tailored to your industry · Grows with your business.', why: 'This is the working system you use every day with both internal and external sources that will ensure you stay on top of your game.' },
         { n: '04', title: 'Guest experts and peer learning', included: 'Expert instructors with real credentials · Proven track records and playbooks · Monthly credibility injections · Peer leaders share real solutions · Community-driven wisdom.', why: 'Learn from the top experts in the industry, with the latest tools and strategies out there right now.' },
         { n: '05', title: 'Resources worth your time', included: 'Curated top-of-market courses · Vetted tools and research · Agent skills and templates · Industry articles filtered for leaders · No research tax, signal not noise.', why: "Everything is tested and proven to work. Our members get only curated, high-quality resources that we're happy to recommend." },
         { n: '06', title: 'Grants and funding access', included: 'International grants and funding calls · Investor and VC opportunities surfaced as they arise · Capital access when ready · Women-led company backing.', why: "Real funding leads, brought to you as they come up, so you're never the last to know." }
       ]
     };
   }
-
   handleCardMove(i, e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
@@ -157,11 +160,9 @@ class Component extends DCLogic {
     const ry = (px - 0.5) * 12;
     this.setState(s => ({ cardTilt: { ...s.cardTilt, [i]: { rx, ry, mx: px * 100, my: py * 100 } } }));
   }
-
   resetCardTilt(i) {
     this.setState(s => ({ cardTilt: { ...s.cardTilt, [i]: { rx: 0, ry: 0, mx: 50, my: 50 } } }));
   }
-
   handlePillarMove(i, e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
@@ -170,11 +171,9 @@ class Component extends DCLogic {
     const ry = (px - 0.5) * 10;
     this.setState(s => ({ pillarTilt: { ...s.pillarTilt, [i]: { rx, ry } } }));
   }
-
   resetPillarTilt(i) {
     this.setState(s => ({ pillarTilt: { ...s.pillarTilt, [i]: { rx: 0, ry: 0 } } }));
   }
-
   handleValueMove(i, e) {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
@@ -183,23 +182,18 @@ class Component extends DCLogic {
     const ry = (px - 0.5) * 10;
     this.setState(s => ({ valueTilt: { ...s.valueTilt, [i]: { rx, ry } } }));
   }
-
   resetValueTilt(i) {
     this.setState(s => ({ valueTilt: { ...s.valueTilt, [i]: { rx: 0, ry: 0 } } }));
   }
-
   togglePhase(i) {
     this.setState(s => ({ phaseOpen: s.phaseOpen === i ? -1 : i }));
   }
-
   _pendingReveal = [];
-
   registerReveal = (el) => {
     if (!el) return;
     if (this._revealObserver) this._revealObserver.observe(el);
     else this._pendingReveal.push(el);
   };
-
   initCounters() {
     const els = document.querySelectorAll('[data-count]');
     if (!els.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -211,9 +205,13 @@ class Component extends DCLogic {
     }), { threshold: 0.6 });
     els.forEach((el) => io.observe(el));
   }
-
   componentDidMount() {
     setTimeout(() => this.initCounters(), 600);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this._onScrollPar = () => { const vh = window.innerHeight; document.querySelectorAll('[data-parallax]').forEach((el) => { const p = el.parentElement.getBoundingClientRect(); const d = (p.top + p.height / 2 - vh / 2) * parseFloat(el.getAttribute('data-parallax')); el.style.transform = 'translateY(' + Math.max(-48, Math.min(48, d)).toFixed(1) + 'px)'; }); };
+      window.addEventListener('scroll', this._onScrollPar, { passive: true, capture: true });
+      this._onScrollPar();
+    }
     if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
     const startObserving = () => {
       this._revealObserver = new IntersectionObserver((entries) => {
@@ -221,6 +219,7 @@ class Component extends DCLogic {
           if (entry.isIntersecting) {
             const el = entry.target;
             el.style.transition = 'opacity 0.8s cubic-bezier(0.2,0.7,0.3,1), transform 0.8s cubic-bezier(0.2,0.7,0.3,1)';
+            el.style.transitionDelay = (el.getAttribute('data-delay') || 0) + 'ms';
             el.style.opacity = '1';
             el.style.transform = 'none';
             this._revealObserver.unobserve(el);
@@ -263,7 +262,7 @@ class Component extends DCLogic {
     this._onHash = () => {
       const before = this.state.route;
       const next = this.syncRoute();
-      if (next && next !== before) { requestAnimationFrame(() => requestAnimationFrame(() => this.scrollToTop())); this.reloadTally(); }
+      if (next && next !== before) { requestAnimationFrame(() => requestAnimationFrame(() => this.scrollToTop())); this.reloadTally(); setTimeout(() => this.initCounters(), 700); }
     };
     window.addEventListener('hashchange', this._onHash);
     this._onAnchor = (e) => {
@@ -301,33 +300,28 @@ class Component extends DCLogic {
     this._onPop = () => { this.syncRoute(); requestAnimationFrame(() => requestAnimationFrame(() => this.scrollToTop())); this.reloadTally(); };
     window.addEventListener('popstate', this._onPop);
   }
-
   componentWillUnmount() {
     window.removeEventListener('message', this._onTallyMsg);
     window.removeEventListener('hashchange', this._onHash);
+    if (this._onScrollPar) window.removeEventListener('scroll', this._onScrollPar, true);
     window.removeEventListener('popstate', this._onPop);
     document.removeEventListener('click', this._onAnchor);
     document.removeEventListener('click', this._onRoute);
   }
-
   afterJoin(email) {
     try { sessionStorage.setItem('zr_wl_email', email); localStorage.setItem('zr_wl_email', email); } catch (e) {}
     this.setState({ wlError: false });
     this.goRoute('welcome');
   }
-
   getWlEmail() {
     try { return sessionStorage.getItem('zr_wl_email') || localStorage.getItem('zr_wl_email') || ''; } catch (e) { return ''; }
   }
-
   slugMap() {
-    return { '': 'home', 'index': 'home', 'home': 'home', 'event': 'event', 'free-masterclass': 'event', 'accelerator': 'services', 'services': 'services', 'about': 'about', 'contact': 'contact', 'slovenija': 'slovenija', 'mission-europe': 'mission-europe', 'circle': 'circle', 'inner-circle': 'circle', 'welcome': 'welcome', 'check-email': 'check-email', 'confirmed': 'confirmed' };
+    return { '': 'home', 'index': 'home', 'home': 'home', 'event': 'event', 'free-masterclass': 'event', 'accelerator': 'services', 'services': 'services', 'about': 'about', 'contact': 'contact', 'slovenija': 'slovenija', 'mission-europe': 'mission-europe', 'circle': 'circle', 'inner-circle': 'circle', 'welcome': 'welcome', 'check-email': 'check-email', 'confirmed': 'confirmed', 'quiz': 'quiz' };
   }
-
   routeSlug(route) {
     return route === 'home' ? '' : (route === 'services' ? 'accelerator' : (route === 'circle' ? 'inner-circle' : (route === 'event' ? 'free-masterclass' : route)));
   }
-
   syncRoute() {
     const map = this.slugMap();
     const hash = (window.location.hash || '').match(/^#\/([a-z-]+)/);
@@ -342,13 +336,11 @@ class Component extends DCLogic {
     this.setState({ route: r });
     return r;
   }
-
   scrollToTop() {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }
-
   reloadTally() {
     clearInterval(this._tally);
     let tries = 0;
@@ -357,7 +349,6 @@ class Component extends DCLogic {
       else if (++tries > 30) clearInterval(this._tally);
     }, 150);
   }
-
   goRoute(route, thenScrollId) {
     if (window.__ZR) { window.location.href = '/' + this.routeSlug(route) + (thenScrollId ? '#' + thenScrollId : ''); return; }
     const base = (window.location.pathname || '/').replace(/[^/]*$/, '');
@@ -387,7 +378,6 @@ class Component extends DCLogic {
     setTimeout(() => this.scrollToTop(), 50);
     setTimeout(() => this.scrollToTop(), 200);
   }
-
   homeVals() {
     const accent = this.props.accent ?? '#FFD500';
     const voiceList = [
@@ -444,7 +434,6 @@ class Component extends DCLogic {
       ctaLabel: this.state.sent ? 'You’re on the list, check your inbox' : 'Join the waitlist'
     };
   }
-
   servicesVals() {
     const accFaqData = [
       { q: 'Do I need technical skills?', a: 'No. We teach what you need, step by step. No coding required.' },
@@ -465,15 +454,15 @@ class Component extends DCLogic {
         { name: 'Priority tracker', detail: 'Your top three priorities, synced with Notion, completed items log back to Notion and clear off the dashboard, so it resets each morning' },
         { name: 'Filtered news feed', detail: 'A daily brief drawn only from the sources and topics you choose' }
       ] },
-      { num: '02', format: '1:1 coaching', theme: 'Build Your Leadership Brain', topics: 'Create an AI that understands your business, goals, leadership style, communication, context. Prompting, memory, projects, knowledge organization', outcome: 'Begins using AI as a trusted thinking partner instead of a chatbot.', deliverable: 'Leadership Brain v1' },
+      { num: '02', format: '1:1 coaching', theme: 'Build Your Second Brain', topics: 'Create an AI that understands your business, goals, leadership style, communication, context. Prompting, memory, projects, knowledge organization', outcome: 'Begins using AI as a trusted thinking partner instead of a chatbot.', deliverable: 'Second Brain v1' },
       { num: '03', format: 'Live workshop', theme: 'Reveal: Seeing Your Business Through AI', topics: 'Systems thinking, workflow mapping, finding bottlenecks, AI opportunity mapping, governance and responsible AI', outcome: 'Learns to identify where AI creates the greatest business impact.', deliverable: 'Workflow Map, AI Opportunity Matrix' },
-      { num: '04', format: '1:1 coaching', theme: 'Strengthen the Leadership Brain', topics: 'Connect company knowledge, meeting notes, SOPs, strategy, market insights and playbooks into the Leadership Brain', outcome: 'Builds a centralized executive operating system for faster decision-making.', deliverable: 'Executive Leadership Brain v2' },
+      { num: '04', format: '1:1 coaching', theme: 'Strengthen the Second Brain', topics: 'Connect company knowledge, meeting notes, SOPs, strategy, market insights and playbooks into the Second Brain', outcome: 'Builds a centralized executive operating system for faster decision-making.', deliverable: 'Executive Second Brain v2' },
       { num: '05', format: 'Live workshop', theme: 'Redesign: Reinvent Work', topics: 'Automation vs. augmentation, AI agents, redesigning workflows, prioritization, quick wins', outcome: 'Chooses one high-impact workflow to redesign.', deliverable: 'AI Transformation Blueprint' },
       { num: '06', format: '1:1 coaching', theme: 'Strategic Workflow Redesign', topics: 'Deep dive into one business workflow (sales, ops, hiring, marketing, customer success, etc.)', outcome: 'Leaves with a redesigned workflow ready for implementation.', deliverable: 'New Workflow Architecture' },
       { num: '07', format: 'Live workshop', theme: 'Rewire: Build with AI', topics: 'Build sprint, AI assistants, automations, reporting, knowledge systems, no-code implementation', outcome: 'Creates the first working AI system inside the business.', deliverable: 'AI Asset #1' },
       { num: '08', format: '1:1 coaching', theme: 'Implementation Lab', topics: 'Testing, debugging, refining, integrating into existing processes, measuring success', outcome: 'AI workflow goes live and delivers real value.', deliverable: 'Fully Implemented AI Workflow' },
       { num: '09', format: 'Live workshop', theme: 'Scale Across Your Team', topics: 'Leading AI adoption, change management, department roadmaps, governance, KPIs, culture', outcome: 'Creates a roadmap to expand AI beyond themselves into the company.', deliverable: 'Department AI Roadmap + 6-Month Rollout Plan' },
-      { num: '10', format: '1:1 + graduation', theme: 'Become an AI-First Leader', topics: 'Review wins, measure impact, refine Leadership Brain, define next priorities, graduation', outcome: 'Leaves with confidence, a proven methodology, and a roadmap for continuous transformation.', deliverable: 'AI Leadership Playbook, Leadership Brain, 90-Day Action Plan' }
+      { num: '10', format: '1:1 + graduation', theme: 'Become an AI-First Leader', topics: 'Review wins, measure impact, refine Second Brain, define next priorities, graduation', outcome: 'Leaves with confidence, a proven methodology, and a roadmap for continuous transformation.', deliverable: 'AI Leadership Playbook, Second Brain, 90-Day Action Plan' }
     ];
     const promiseTheme = this.props.promiseStyle ?? 'blue-yellow';
     const promiseThemes = {
@@ -511,7 +500,7 @@ class Component extends DCLogic {
         { n: '04', time: 'SCALE', segment: 'From you to your team', goal: 'How this scales across your team, and the benefits of both a personal and a business Second Brain.' }
       ],
       layers: [
-        { n: '01', word: 'Transforming the Leader', sub: 'See differently', items: 'AI mindset, the 4D Framework, AI fluency, Leadership Brain.' },
+        { n: '01', word: 'Transforming the Leader', sub: 'See differently', items: 'AI mindset, the 4D Framework, AI fluency, Second Brain.' },
         { n: '02', word: 'Transforming the Organisation', sub: 'Think in systems', items: 'Workflow audit, governance, prioritization, automations and AI agents.' },
         { n: '03', word: 'Build & Scale', sub: 'Ship it', items: 'Build sprints, AI assistants, and a rollout plan for team adoption over the next 6 months.' }
       ],
@@ -519,7 +508,7 @@ class Component extends DCLogic {
         'One workflow redesigned and live inside your business',
         'Five live online group workshops, small cohort, cameras on',
         'Five 1:1 coaching sessions with a founder',
-        'Your Leadership Brain, connected to company knowledge',
+        'Your Second Brain, connected to company knowledge',
         'Department AI roadmap and 6-month rollout plan',
         'Ongoing access to the Zorya member network after graduation'
       ],
@@ -542,7 +531,6 @@ class Component extends DCLogic {
       ctaLabel: this.state.sent ? 'You’re on the list, check your inbox' : 'Join the waitlist'
     };
   }
-
   aboutVals() {
     return {
       majaOpen: this.state.majaOpen,
@@ -585,7 +573,6 @@ class Component extends DCLogic {
       })
     };
   }
-
   mediaVals() {
     return {
       stats: [
@@ -617,7 +604,6 @@ class Component extends DCLogic {
       ]
     };
   }
-
   contactVals() {
     return {
       reasons: ['The Inner Circle', 'AI-First Leaders', 'Press & media', 'Partnership', 'Other'],
@@ -638,7 +624,53 @@ class Component extends DCLogic {
       cCtaLabel: this.state.cSent ? 'Sent, we’ll reply within three days' : 'Send message'
     };
   }
-
+  quizVals() {
+    const doms = ['Foundations', 'Building', 'Governance', 'Your practice'];
+    const qs = [
+      { d: 3, q: 'How are you using AI today?', o: [['I have not really started', 0], ['As a chatbot, for questions and drafts', 1], ['With projects: saved instructions, files and skills', 2], ['I have built an agent that does a task on its own', 3], ['I orchestrate several agents across my work', 4]], why: 'Thank you. This tells us where to start you. The next questions test the vocabulary behind it.' },
+      { d: 0, q: 'What is an MCP, in the context of AI?', o: [['A prompt format that shortens replies', 1], ['I have not come across it', 0], ['An open standard that links AI to your tools', 3], ['A premium plan for AI assistants', 1]], why: 'MCP is the Model Context Protocol. It lets an assistant use your calendar, files or CRM through a shared standard, so each tool does not need its own custom connection.' },
+      { d: 0, q: 'What does RAG do?', o: [['Lets a model look things up in your documents', 3], ['Retrains the model on all of your data', 1], ['A colour rating for AI answer quality', 1], ['I have not come across it', 0]], why: 'RAG is retrieval-augmented generation. The model fetches relevant passages from your material and answers from those, which cuts guessing and keeps your data out of the model itself.' },
+      { d: 0, q: 'What is context engineering?', o: [['Writing one very clever sentence to ask', 1], ['Choosing the chips that AI runs on', 0], ['I have not come across it', 0], ['Choosing what goes into the model\'s context', 3]], why: 'A model only knows what is in its context window. Context engineering covers the instructions, documents, examples and memory you place there. It matters more than any single prompt.' },
+      { d: 1, q: 'AI is billed and slowed by tokens. What cuts usage most without hurting quality?', o: [['Always use the largest model available', 0], ['Send only the context each task needs', 3], ['Ask the model to keep replies brief', 2], ['Paste the whole document every time', 1]], why: 'Most tokens go on input, not on the reply. Trimming context to what the task needs, and caching the parts that repeat, saves more than shortening answers. Matching model size to the task helps too.' },
+      { d: 1, q: 'What makes an agent different from a chatbot?', o: [['It has a name and a friendly voice', 1], ['I am not sure', 0], ['It pursues a goal and uses tools to get there', 3], ['It runs a fixed set of steps on a trigger', 2]], why: 'A chatbot answers. An agent plans, acts through tools and checks the outcome. A fixed sequence on a trigger is an automation, which is a useful building block but not yet an agent.' },
+      { d: 1, q: 'Models and tools change every few months. How do you keep an AI workflow reliable?', o: [['Switch to whichever model is trending', 0], ['Check a few outputs when it feels off', 1], ['I have not run one long enough to say', 0], ['Re-test on fixed real examples after changes', 3]], why: 'A small set of real test cases, often called evals, tells you whether a change made things better or worse. Without it you find out from your customers.' },
+      { d: 2, q: 'What is shadow AI?', o: [['Staff using AI tools the company has not approved', 3], ['AI that runs without human review', 1], ['I have not come across it', 0], ['The free versions of paid AI tools', 1]], why: 'Shadow AI is unapproved use of AI at work, often with good intentions. The risk is client or personal data leaving the company with nobody aware. Banning rarely works. Approved alternatives do.' },
+      { d: 2, q: 'A team wants to use AI on customer data. What is the strongest first step?', o: [['Ban all AI tools until the rules are clear', 1], ['I would not know where to start', 0], ['Map each use by risk, owner and data involved', 3], ['Circulate a one-page usage policy', 2]], why: 'Governance starts with knowing what is in use, how risky it is, who is accountable and what data it touches. Under the EU AI Act that means classifying each use by risk. A policy helps, and it works better when it rests on that inventory.' }
+    ];
+    const levels = [
+      { name: 'curious', body: 'You are at the start, and that is a fine place to be. You do not need to catch up before you join. We begin with the basics and explain every term.', starts: ['Set up one AI assistant you trust and use it for one real task.', 'Learn what is safe to share with AI and what is not.', 'Start your Second Brain with your first notes.'] },
+      { name: 'practising', body: 'You use AI for small things, and it helps. The next step is to make it a habit and give it more of your context.', starts: ['Give AI the background on your work, so its answers fit you.', 'Move your scattered notes into one Second Brain.', 'Build your first simple agent with your buddy.'] },
+      { name: 'building', body: 'AI is already part of your week and you have built things of your own. Now you can connect the pieces.', starts: ['Connect your tools so tasks run from start to finish.', 'Write your AI policy and check your set-up against the EU AI Act.', 'Share what you built in a breakout group and get feedback.'] },
+      { name: 'orchestrating', body: 'You run real work through AI and you think in systems. You will get the most from the guest experts and from the women building next to you.', starts: ['Make your agents work together across your business.', 'Go deeper in the week two sessions with guest experts.', 'Bring your pitch to the investor sessions.'] }
+    ];
+    const step = Math.min(this.state.quizStep || 0, qs.length - 1), ans = this.state.quizAns || [], picks = this.state.quizPick || [], done = !!this.state.quizDone;
+    const revealed = ans[step] !== undefined, last = step === qs.length - 1;
+    const tot = ans.reduce((x, y) => x + (y || 0), 0), pct = tot / qs.reduce((x, q) => x + Math.max(...q.o.map(a => a[1])), 0);
+    const li = pct < 0.3 ? 0 : (pct < 0.55 ? 1 : (pct < 0.8 ? 2 : 3)), L = levels[li], cur = qs[step];
+    return {
+      quizAsking: !done, quizDone: done,
+      quizCount: (step + 1) + '/' + qs.length, quizPct: Math.round(((step + (revealed ? 1 : 0)) / qs.length) * 100) + '%',
+      quizDomain: doms[cur.d] + ' · Question ' + (step + 1),
+      quizQ: cur.q,
+      quizOptions: cur.o.map(([label, score], i) => {
+        const on = picks[step] === i, best = revealed && cur.d < 3 && score === 3;
+        return { label, bg: on ? '#14205C' : '#fff', fg: on ? '#FBF9F2' : '#14205C', bd: on ? '#14205C' : (best ? '#E8552E' : 'rgba(20,32,92,0.18)'), cur: revealed ? 'default' : 'pointer', best,
+          pick: () => { if (revealed) return; this.setState({ quizAns: Object.assign([], ans, { [step]: score }), quizPick: Object.assign([], picks, { [step]: i }) }); } };
+      }),
+      quizRevealed: revealed, quizWhy: cur.why, quizNextLabel: last ? 'See my level' : 'Next question',
+      quizNext: () => {
+        if (last) { try { localStorage.setItem('zr_ai_level', String(li + 1)); } catch (e) {} this.setState({ quizDone: true }); requestAnimationFrame(() => this.scrollToTop()); }
+        else this.setState({ quizStep: step + 1 });
+      },
+      quizCanBack: !done && step > 0,
+      quizBack: () => this.setState({ quizStep: Math.max(0, step - 1) }),
+      quizRetake: () => this.setState({ quizStep: 0, quizAns: [], quizPick: [], quizDone: false }),
+      quizDomains: doms.slice(0, 3).map((n, di) => { const idx = qs.map((q, k) => q.d === di ? k : -1).filter(k => k >= 0); const s = idx.reduce((x, k) => x + (ans[k] || 0), 0), m = idx.length * 3; const p = Math.round(s / m * 100) + '%'; return { n, w: p, t: p }; }),
+      quizLevelN: String(li + 1), quizLevelName: L.name, quizLevelBody: L.body,
+      quizStarts: L.starts.map(t => ({ t })),
+      quizBars: [0, 1, 2, 3].map(i => ({ bg: i <= li ? '#E8552E' : 'rgba(27,58,160,0.12)' }))
+    };
+  }
   renderVals() {
     const r = this.state.route;
     return {
@@ -647,6 +679,7 @@ class Component extends DCLogic {
       ...this.aboutVals(),
       ...this.contactVals(),
       ...this.circleVals(),
+      ...this.quizVals(), isQuiz: r === 'quiz',
       isHome: r === 'home',
       isWelcome: r === 'welcome', isCheckEmail: r === 'check-email', isConfirmed: r === 'confirmed', wlEmail: this.getWlEmail(), hasWlEmail: !!this.getWlEmail(),
       cities: 'Ljubljana, Slovenia|Maribor, Slovenia|Koper, Slovenia|Kranj, Slovenia|Celje, Slovenia|Novo Mesto, Slovenia|Dublin, Ireland|Cork, Ireland|Galway, Ireland|Limerick, Ireland|Frankfurt, Germany|Berlin, Germany|Munich, Germany|Hamburg, Germany|Cologne, Germany|Stuttgart, Germany|Düsseldorf, Germany|Leipzig, Germany|Barcelona, Spain|Madrid, Spain|Valencia, Spain|Seville, Spain|Bilbao, Spain|Malaga, Spain|Austin, Texas, USA|Houston, Texas, USA|Dallas, Texas, USA|San Antonio, Texas, USA|New York, USA|San Francisco, USA|Los Angeles, USA|Chicago, USA|Boston, USA|Seattle, USA|Miami, USA|Washington, USA|Denver, USA|Atlanta, USA|London, United Kingdom|Manchester, United Kingdom|Edinburgh, United Kingdom|Paris, France|Lyon, France|Amsterdam, Netherlands|Rotterdam, Netherlands|Brussels, Belgium|Zurich, Switzerland|Geneva, Switzerland|Vienna, Austria|Prague, Czechia|Warsaw, Poland|Budapest, Hungary|Zagreb, Croatia|Split, Croatia|Belgrade, Serbia|Sarajevo, Bosnia and Herzegovina|Bucharest, Romania|Sofia, Bulgaria|Athens, Greece|Rome, Italy|Milan, Italy|Lisbon, Portugal|Porto, Portugal|Copenhagen, Denmark|Stockholm, Sweden|Oslo, Norway|Helsinki, Finland|Tallinn, Estonia|Riga, Latvia|Vilnius, Lithuania|Dubai, United Arab Emirates|Tel Aviv, Israel|Istanbul, Turkey|Cairo, Egypt|Lagos, Nigeria|Nairobi, Kenya|Cape Town, South Africa|Mumbai, India|Bangalore, India|Delhi, India|Singapore, Singapore|Hong Kong, China|Tokyo, Japan|Seoul, South Korea|Sydney, Australia|Melbourne, Australia|Auckland, New Zealand|Toronto, Canada|Vancouver, Canada|Montreal, Canada|Mexico City, Mexico|São Paulo, Brazil|Buenos Aires, Argentina|Santiago, Chile|Bogotá, Colombia'.split('|').map(c => ({ c })),
